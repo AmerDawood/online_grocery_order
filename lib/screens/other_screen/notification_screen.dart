@@ -24,8 +24,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
           ),
         ),
         centerTitle: true,
-        leading: IconButton(onPressed: (){},icon: Icon(Icons.arrow_back_ios),),
-
         iconTheme: IconThemeData(color: Colors.black),
       ),
       body: ListView(
@@ -35,12 +33,15 @@ class _NotificationScreenState extends State<NotificationScreen> {
             child: Row(
 
               children: [
-                Text(
-                  'Today',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color:Color.fromRGBO(54, 89, 106, 1),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    'Today',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color:Color.fromRGBO(54, 89, 106, 1),
+                    ),
                   ),
                 ),
                 Spacer(),
@@ -67,7 +68,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             child: SizedBox(
               height: 1000,
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: 3,
                 itemBuilder: (context, index) {
                   return Container(
 

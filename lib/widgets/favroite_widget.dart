@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class favorite_widget extends StatelessWidget {
@@ -65,27 +67,36 @@ class favorite_widget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 0),
-                  Text(
-                     Text1,
-                    style: TextStyle(color: Colors.black, fontSize: 17),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                       Text1,
+                      style: TextStyle(color: Colors.black, fontSize: 17,fontWeight: FontWeight.bold),
+                    ),
                   ),
                   SizedBox(
                     height: 3,
                   ),
-                  Text(
-                    Text2,
-                    style: TextStyle(color: Colors.grey),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      Text2,
+                      style: TextStyle(color: Colors.grey),
+                    ),
                   ),
                   Row(
                     children: [
-                      Text(
-                        Text3,
-                        style: TextStyle(
-                            color: Color.fromRGBO(14, 164, 79, 100),
-                            fontSize: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Text(
+                          Text3,
+                          style: TextStyle(
+                              color: Color.fromRGBO(14, 164, 79, 100),
+                              fontSize: 20),
+                        ),
                       ),
                       SizedBox(
-                        width: 13,
+                        width: 7,
                       ),
                       Text(
                         Text4,
@@ -95,17 +106,23 @@ class favorite_widget extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                     Spacer(),
-                     Row(
-                       children: [
-                         InkWell(
-                           onTap: (){},
-                           child: Image(
-                             image: AssetImage(
-                               'images/Button - plus.png',
+                     Padding(
+                       padding: const EdgeInsets.only(right: 5),
+                       child: Row(
+                         children: [
+                           InkWell(
+                             onTap: (){},
+                             child: Image(
+                               image: AssetImage(
+                                 'images/Button - plus.png',
+
+                               ),
+                               width: 40,
+                               height: 40,
                              ),
                            ),
-                         ),
-                       ],
+                         ],
+                       ),
                      ),
                     ],
                   ),

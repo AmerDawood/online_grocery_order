@@ -1,22 +1,24 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-class menu_widget extends StatelessWidget {
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:grocery_order/screens/other_screen/details_screen.dart';
+class menu_widget extends StatelessWidget{
   final String Text1;
   final String Text2;
   final String Text3;
   final String Text4;
-  final Image image;
-
+  final String url;
   menu_widget({
     required this.Text1,
     required this.Text2,
     required this.Text3,
     required this.Text4,
-    required this.image
+    required this.url
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Card(
       elevation: 3,
       clipBehavior: Clip.antiAlias,
@@ -25,6 +27,7 @@ class menu_widget extends StatelessWidget {
       ),
       child: Column(
         children: [
+
           Stack(
             children: [
               Padding(
@@ -35,7 +38,11 @@ class menu_widget extends StatelessWidget {
                   ),
                   height: 100,
                   width: double.infinity,
-                  child:image,
+                  child:Image(
+                    image: NetworkImage(
+                      url,
+                    ),
+                  ),
                 ),
               ),
               Row(
@@ -66,49 +73,70 @@ class menu_widget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 0),
-                  Text(
-                    Text1,
-                    style: TextStyle(color: Colors.black, fontSize: 17),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text(
+                      Text1,
+                      style: TextStyle(color: Colors.black, fontSize: 17),
+                    ),
                   ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    Text2,
-                    style: TextStyle(color: Colors.grey),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text(
+                      Text2,
+                      style: TextStyle(color: Colors.grey),
+                    ),
                   ),
                   Row(
                     children: [
-                      Text(
-                        Text3,
-                        style: TextStyle(
-                            color: Color.fromRGBO(14, 164, 79, 100),
-                            fontSize: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          '$Text3\$',
+                          style: TextStyle(
+                              color: Color.fromRGBO(14, 164, 79, 100),
+                              fontSize: 20),
+                        ),
                       ),
-                      Text(
-                        Text4,
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Text(
+                          Text4,
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      // SizedBox(
-                      //   width: 50,
-                      // ),
 
-                      // SizedBox(width: 10),
-                      Container(
-                        height: 34,
-                        width: 50,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.orange,
-                          ),
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
+                      Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Stack(
+                          children: [
+                            Container(
+                              height: 30,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                color: Colors.orange,
+                                borderRadius: BorderRadius.circular(7),
+                              ),
+
+                            ),
+
+                            GestureDetector(
+                              onTap: (){},
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 1.5),
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                  size: 32,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
