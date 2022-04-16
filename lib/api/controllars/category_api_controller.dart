@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:grocery_order/api/api_settings.dart';
 import 'package:grocery_order/models/category.dart';

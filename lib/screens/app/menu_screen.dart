@@ -1,17 +1,26 @@
 import 'dart:ui';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:grocery_order/api/controllars/category_api_controller.dart';
+import 'package:grocery_order/api/controllars/customer_api_controller.dart';
+import 'package:grocery_order/api/controllars/offers_api_controllers.dart';
 import 'package:grocery_order/api/controllars/product_api_controller.dart';
 import 'package:grocery_order/models/category.dart';
+import 'package:grocery_order/models/customer.dart';
+import 'package:grocery_order/models/offers_products.dart';
 import 'package:grocery_order/models/product.dart';
 import 'package:grocery_order/widgets/InCenterMenueScreen.dart';
 import 'package:grocery_order/widgets/Search&Filtter.dart';
 import 'package:grocery_order/widgets/StackInMenuScreen.dart';
 import 'package:grocery_order/widgets/menu_widget.dart';
+
+import '../../widgets/drawer.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({Key? key}) : super(key: key);
@@ -22,242 +31,38 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
 
-
+  List<Customer> _categories = <Customer>[];
+  late Future<List<Customer>> _future1;
 
 
   List<Categories> _category =<Categories>[];
   late Future<List<Categories>> _future;
+
+  List<OffersProducts> _offersProducts = <OffersProducts>[];
+  late Future<List<OffersProducts>> _future2;
+
+ 
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _future =CategoryAPIController().getCategories();
+    _future1=CustomerApiController().getCustomer();
+    _future2 =OffersApiControllers().getOffersProducts();
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: Stack(
-        children: [
-          ImageFiltered(
-            imageFilter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
-            child: Image(
-              image: AssetImage('images/pATTERN.png'),
-            ),
-          ),
-          Container(
-            width: 240,
-            child: Drawer(
-              child: ListView(
-                children: [
-                  SizedBox(
-                    height: 110,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  ListTile(
-                    leading: InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(
-                            context, '/profile_screen');
-                      },
-                      child: Image(
-                        image: AssetImage(
-                          'image_drawer/Icon - Profile1.png',
-                        ),
-                      ),
-                    ),
-                    title: Text(
-                      'Profile',
-                      style: TextStyle(
-                        fontSize: 23,
-                        color: Color.fromRGBO(54, 89, 106, 1),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  ListTile(
-                    leading: InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, '/');
-                      },
-                      child: Image(
-                        image: AssetImage('image_drawer/Icon - about us.png'),
-                      ),
-                    ),
-                    title: Text(
-                      'About us',
-                      style: TextStyle(
-                        fontSize: 23,
-                        color: Color.fromRGBO(54, 89, 106, 1),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  ListTile(
-                    onTap: () {
-                      // Navigator.pushNamed(context, '/login_screen');
-                    },
-                    leading: InkWell(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(context, '/');
-                        },
-                        child: Image(
-                          image: AssetImage('image_drawer/Icon - Articles.png'),
-                        )),
-                    title: Text(
-                      'Articles',
-                      style: TextStyle(
-                        fontSize: 23,
-                        color: Color.fromRGBO(54, 89, 106, 1),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    leading: InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, '/');
-                      },
-                      child: Image(
-                        image: AssetImage('image_drawer/settings.png'),
-                      ),
-                    ),
-                    title: Text(
-                      'Settings',
-                      style: TextStyle(
-                        fontSize: 23,
-                        color: Color.fromRGBO(54, 89, 106, 1),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    leading: InkWell(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(context, '/');
-                        },
-                        child: Image(
-                          image:
-                              AssetImage('image_drawer/Icon - Need help.png'),
-                        )),
-                    title: Text(
-                      'Need Help?',
-                      style: TextStyle(
-                        fontSize: 23,
-                        color: Color.fromRGBO(54, 89, 106, 1),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    leading: InkWell(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(
-                              context, '/terms_of_services');
-                        },
-                        child: Image(
-                          image: AssetImage(
-                              'image_drawer/Icon - Term of services.png'),
-                        )),
-                    title: Text(
-                      'Terms of Services',
-                      style: TextStyle(
-                        fontSize: 23,
-                        color: Color.fromRGBO(54, 89, 106, 1),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    leading: InkWell(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(context, '/sign_in');
-                        },
-                        child: Image(
-                          image: AssetImage('image_drawer/Logout.png'),
-                        )),
-                    title: Text(
-                      'Sign Out',
-                      style: TextStyle(
-                        fontSize: 23,
-                        color: Color.fromRGBO(54, 89, 106, 1),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Column(
-            children: [
-              SizedBox(
-                height: 30,
-              ),
-              Container(
-                height: 100,
-                width: 350,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Center(
-                  child: Card(
-                    elevation: 0,
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 30,
-                        child: Image.asset(
-                          'image_drawer/img - user.png',
-                        ),
-                        backgroundColor: Colors.white,
-                      ),
-                      title: Text(
-                        'Amer Dawood',
-                        style: TextStyle(
-                          fontSize: 25,
-                          color: Color.fromRGBO(54, 89, 106, 1),
-                        ),
-                      ),
-                      subtitle: Text(
-                        'amermadawood@gmail.com',
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Color.fromRGBO(54, 89, 106, 1),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+      drawer: MyDrawer(),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
         title: Text(
-          'Hi, Madbrains',
+          'Hi, ',
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
@@ -307,6 +112,7 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
         ],
       ),
+    
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: ListView(
@@ -315,50 +121,161 @@ class _MenuScreenState extends State<MenuScreen> {
             SizedBox(
               height: 7,
             ),
-            SizedBox(
-              height: 160,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  StackToGategory(
-                    title: 'Rise',
-                    image: Image(
-                      image: AssetImage(
-                        'images/Img - fruits.png',
-                      ),
-                    ),
-                  ),
-                  StackToGategory(
-                    title: 'Dry Fruits',
-                    image: Image(
-                      image: AssetImage(
-                        'images/Img - Juice.png',
-                      ),
-                    ),
-                  ),
-                  StackToGategory(
-                    title: 'Atta',
-                    image: Image(
-                      image: AssetImage(
-                        'images/Dry Fruits.png',
-                      ),
-                    ),
-                  ),
-                  StackToGategory(
-                    title: 'Dry Fruits',
-                    image: Image(
-                      image: AssetImage(
-                        'images/Img - Juice.png',
-                      ),
-                    ),
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.only(left: 10, top: 5, right: 10),
+              child:
+              
+               FutureBuilder<List<Categories>>(
+                future: _future,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting)
+                  {
+                    return const Center(
+                      child:  SpinKitRotatingCircle(
+                color: Colors.orange,
+                size: 50.0,
               ),
+                    );
+                  } else if (snapshot.hasData&&snapshot.data!.isNotEmpty) {
+                      _category = snapshot.data ??[];
+                    return SizedBox(
+                      height: 150,
+                      child: ListView.builder(
+                        itemCount: _category.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: StackToCategory(
+                                  imageUrl: '${_category[index].imageUrl}',
+                                  title: '${_category[index].nameEn}',
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    );
+                  } else {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.warning,
+                            size: 80,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'No Category',
+                            style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+
+                },
+              )
+           
             ),
+
+
             SizedBox(
               height: 15,
             ),
-            InCenterMenueScreen(),
+
+        
+               FutureBuilder<List<OffersProducts>>(
+                future: _future2,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting)
+                  {
+                    return const Center(
+                      child: SpinKitRotatingCircle(
+                color: Colors.orange,
+                size: 50.0,
+              ),
+                    );
+                  } else if (snapshot.hasData&&snapshot.data!.isNotEmpty) {
+                      _offersProducts = snapshot.data ??[];
+                      return  
+
+
+
+
+              CarouselSlider.builder(
+                          
+                  itemCount: _offersProducts.length,
+                  itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) 
+                  {
+                   return   InCenterMenueScreen(
+                     imageUrl: '${_offersProducts[itemIndex].imageUrl}',
+                      discount: _offersProducts[itemIndex].discountRatio.toString(), 
+                      title: _offersProducts[itemIndex].infoEn.toString(),
+                      );
+
+                      
+                  },
+                     
+                    options: CarouselOptions(
+                      
+              height: 230,
+              aspectRatio: 16/10,
+              viewportFraction: 0.8,
+              initialPage: 0,
+              enableInfiniteScroll: true,
+              reverse: false,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 3),
+              autoPlayAnimationDuration: Duration(seconds: 3),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enlargeCenterPage: true,
+              
+              scrollDirection: Axis.horizontal,
+              
+            ),
+            
+                );
+
+                  } else {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.warning,
+                            size: 80,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'No Category',
+                            style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                  
+
+                },
+              ),
+           
+
+
+
             SizedBox(
               height: 15,
             ),
@@ -406,12 +323,14 @@ class _MenuScreenState extends State<MenuScreen> {
                 builder:(context, snapshot) {
                   if(snapshot.connectionState==ConnectionState.waiting){
                     return Center(
-                      child:CircularProgressIndicator(),
+                      child: SpinKitRotatingCircle(
+                color: Colors.orange,
+                size: 50.0,
+              ),
                     );
 
                   }else if(snapshot.hasData&&snapshot.data!.isNotEmpty){
                     _category = snapshot.data ??[];
-
                     return GridView.builder(
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 300,
@@ -464,3 +383,4 @@ class _MenuScreenState extends State<MenuScreen> {
     );
   }
 }
+

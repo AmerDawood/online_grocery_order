@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:grocery_order/api/api_settings.dart';
@@ -7,6 +8,30 @@ import 'package:grocery_order/prefs/customer_preferance_controller.dart';
 import 'package:grocery_order/utils/helpers.dart';
 import 'package:http/http.dart' as http;
 class CustomerApiController with Helpers{
+
+
+    Future<List<Customer>> getCustomer() async {
+    var url = Uri.parse(ApiSettings.Category);
+    var response = await http.get(
+      url,
+      headers: {
+        HttpHeaders.authorizationHeader: CustomerPreferenceController().token,
+        HttpHeaders.acceptHeader: 'application/json',
+        },
+    );
+
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(response.body);
+      //as List
+      var jsonArray = jsonResponse['list'] as List;
+      // return jsonArray
+      //     .map((jsonObject) => Categories.fromJson(jsonObject))
+      //     .toList();
+    } else if (response.statusCode == 400) {
+      //
+    }
+    return [];
+  }
 
   Future<bool>login({required String mobile,required String password})async{
   var url =Uri.parse(ApiSettings.LOGIN);
@@ -26,7 +51,7 @@ class CustomerApiController with Helpers{
   return false;
 
   }
-
+     
 
    // Register
   Future<bool> register({
@@ -36,6 +61,7 @@ class CustomerApiController with Helpers{
     required String password,
     required String gender,
     required String city,
+    required String StorApiKey
   }) async {
     var url = Uri.parse(ApiSettings.REGISTER);
     var response = await http.post(url, body: {
@@ -44,7 +70,7 @@ class CustomerApiController with Helpers{
       'password': password,
       'gender': gender,
       'city':city,
-      'STORE_API_KEY':'17956537-62bb-45ba-aaf0-f12705b144c8',
+      StorApiKey:'17956537-62bb-45ba-aaf0-f12705b144c8',
     });
     if (response.statusCode == 201) {
       showSnackBar(
@@ -95,9 +121,6 @@ class CustomerApiController with Helpers{
 
 
   // Reset Password
-
-
-
   Future<bool> resetPassword({required
   BuildContext context ,
     required String mobile,
@@ -134,9 +157,36 @@ class CustomerApiController with Helpers{
     return false;
 
   }
+  
 
+  //function user active
+  // Future<bool> userActive({required BuildContext context ,required String mobile,required String code}) async {
+  //   var url = Uri.parse(ApiSettings.UserActive);
+  //   var response = await http.post(url,body:{
+  //     'mobile': mobile,
+  //     'code': code,
 
+  //   });
+  //   if(response.statusCode==200){
+  //     var jsonObject =jsonDecode(response.body);
+  //     showSnackBar(context: context, message:jsonObject['message']);
+  //     return true;
 
+  //   }else if(response.statusCode==400){
+  //     var jsonObject =jsonDecode(response.body);
+  //     showSnackBar(context: context,
+  //         message:jsonObject['message'],error: true);
+  //   }else{
+  //     showSnackBar(
+  //         context: context,
+
+  //         message: 'something error , try again',
+  //         error: true
+  //     );
+  //   }
+  //   return false;
+
+  // }
 
 
 

@@ -5,6 +5,7 @@ import 'package:grocery_order/widgets/favroite_widget.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
+  
 
   @override
   _FavoriteScreenState createState() => _FavoriteScreenState();
@@ -48,41 +49,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       ),
 
 
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GridView(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 5,
-            mainAxisSpacing: 10,
-            childAspectRatio: 140 / 180,
-          ),
-          children: [
-            favorite_widget(
-              Text1: 'Nutrition Food',
-              Text2: '500mg',
-              Text3: '\$15.00',
-              Text4: '15% off',
-              image:Image(image: AssetImage('images/img.png'),),
-            ),
-            favorite_widget(
-              Text1: 'Nutrition Food',
-              Text2: '500mg',
-              Text3: '\$15.00',
-              Text4: '15% off',
-              image:Image(image: AssetImage('favorite_image/img1.png'),),
-            ),
-            favorite_widget(
-              Text1: 'Nutrition Food',
-              Text2: '500mg',
-              Text3: '\$15.00',
-              Text4: '15% off',
-              image:Image(image: AssetImage('favorite_image/img2.png'),),
-            ),
-
-          ],
-        ),
-      ),
+      body: Column(children: [],)
+      
     );
   }
 }

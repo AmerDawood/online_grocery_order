@@ -68,7 +68,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             child: SizedBox(
               height: 1000,
               child: ListView.builder(
-                itemCount: 3,
+                itemCount: 1,
                 itemBuilder: (context, index) {
                   return Container(
 

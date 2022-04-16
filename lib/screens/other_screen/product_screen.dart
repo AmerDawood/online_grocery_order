@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:grocery_order/api/controllars/category_api_controller.dart';
@@ -75,7 +76,10 @@ class _TopProductState extends State<TopProduct> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-              child: CircularProgressIndicator(),
+              child:  SpinKitRotatingCircle(
+                color: Colors.orange,
+                size: 50.0,
+              ),
             );
           } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
             _category = snapshot.data ?? [];

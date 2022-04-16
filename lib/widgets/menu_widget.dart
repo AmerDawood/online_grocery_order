@@ -53,7 +53,7 @@ class menu_widget extends StatelessWidget{
                     radius: 21,
                     child: Icon(
                       Icons.favorite_outlined,
-                      color: Colors.red,
+                      color: Colors.grey,
                     ),
                   ),
                 ],

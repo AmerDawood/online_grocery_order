@@ -1,5 +1,3 @@
-
-
 import 'package:grocery_order/models/category.dart';
 import 'package:grocery_order/screens/auth/forget_password.dart';
 import 'package:grocery_order/screens/auth/reset_password.dart';
@@ -12,4 +10,5 @@ class ApiSettings{
   static const ResetPassword =_API_URL +'auth/reset-password?={code}';
   static const Category =_API_URL +'categories';
   static const Product =_API_URL +'categories';
+  static const OffersProducts =_API_URL+'offers';
 }

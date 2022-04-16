@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -20,6 +21,7 @@ import 'package:grocery_order/screens/other_screen/terms_of_services.dart';
 import 'package:grocery_order/screens/other_screen/product_screen.dart';
 
 void main()async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await CustomerPreferenceController().initSharedPreference();
   await AppSettingsPreferances().initPreferances();
@@ -32,10 +34,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MainMaterialApp();
-
   }
 }
-
 class MainMaterialApp extends StatelessWidget {
   const MainMaterialApp({
     Key? key,
