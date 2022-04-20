@@ -70,7 +70,8 @@ class CustomerApiController with Helpers{
       'password': password,
       'gender': gender,
       'city':city,
-      StorApiKey:'17956537-62bb-45ba-aaf0-f12705b144c8',
+      //'17956537-62bb-45ba-aaf0-f12705b144c8'
+      StorApiKey:StorApiKey,
     });
     if (response.statusCode == 201) {
       showSnackBar(

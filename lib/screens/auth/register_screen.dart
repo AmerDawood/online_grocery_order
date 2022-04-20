@@ -18,9 +18,10 @@ class _SignUpState extends State<SignUp> with Helpers {
   late TextEditingController _fullNameEditingController;
   late TextEditingController _mobileEditingController;
   late TextEditingController _passwordEditingController;
-  late TextEditingController _STORE_API_KEYEditingController;
+  // late TextEditingController _STORE_API_KEYEditingController;
   late TextEditingController _genderEditingController;
   late TextEditingController _cityEditingController;
+  final StoreApiKey ='17956537-62bb-45ba-aaf0-f12705b144c8' ;
   @override
   void initState() {
     // TODO: implement initState
@@ -29,7 +30,7 @@ class _SignUpState extends State<SignUp> with Helpers {
     _mobileEditingController = TextEditingController();
     _passwordEditingController = TextEditingController();
     _cityEditingController = TextEditingController();
-    _STORE_API_KEYEditingController = TextEditingController();
+    // _STORE_API_KEYEditingController = TextEditingController();
     _genderEditingController=TextEditingController();
 
   }
@@ -41,7 +42,7 @@ class _SignUpState extends State<SignUp> with Helpers {
     _mobileEditingController.dispose();
     _passwordEditingController.dispose();
     _cityEditingController.dispose();
-    _STORE_API_KEYEditingController.dispose();
+    // _STORE_API_KEYEditingController.dispose();
     _genderEditingController.dispose();
     super.dispose();
   }
@@ -130,9 +131,12 @@ class _SignUpState extends State<SignUp> with Helpers {
               ),
               SizedBox(height: 10),
               
-              CustomTextField(
-                text: 'Gender',
-                textEditingController: _genderEditingController,
+              // CustomTextField(
+              //   text: 'Gender',
+              //   textEditingController: _genderEditingController,
+              // ),
+              TextField(
+                controller:_genderEditingController,
               ),
                 SizedBox(height: 10),
               
@@ -171,7 +175,8 @@ class _SignUpState extends State<SignUp> with Helpers {
         _passwordEditingController.text.isNotEmpty &&
         _cityEditingController.text.isNotEmpty &&
         _genderEditingController.text.isEmpty&&
-        _STORE_API_KEYEditingController.text.isNotEmpty
+        StoreApiKey.isNotEmpty
+        // _STORE_API_KEYEditingController.text.isNotEmpty
         ) {
       return true;
     }
@@ -188,7 +193,7 @@ class _SignUpState extends State<SignUp> with Helpers {
       password: _passwordEditingController.text,
       city: _cityEditingController.text,
       StorApiKey: '17956537-62bb-45ba-aaf0-f12705b144c8',
-      // STORE_API_KEY: _STORE_API_KEYEditingController.text,
+      // StorApiKey: StoreApiKey,
     );
     if (status) {
       Navigator.pushReplacementNamed(context, '/main_screen');

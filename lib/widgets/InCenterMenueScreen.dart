@@ -13,7 +13,7 @@ class InCenterMenueScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 180,
+        height: 200,
         width: double.infinity,
         child: 
               Stack(
@@ -24,7 +24,7 @@ class InCenterMenueScreen extends StatelessWidget {
                     ),
                     fit: BoxFit.cover,
                     width: double.infinity,
-                    height: 300,
+                    height: 180,
                   ),
                   Center(
                     child: Column(
@@ -38,22 +38,28 @@ class InCenterMenueScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 5,),
-                        Text(
-                          '${title}',
-                          style: TextStyle(
-                            fontSize: 21,
-                            color: Colors.white,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            
+                            '${title}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 21,
+                              color: Color.fromARGB(255, 37, 10, 10),
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        SizedBox(height: 5,),
-                        Text(
-                          '${title}',
-                          style: TextStyle(
-                            fontSize: 21,
-                            color: Color.fromRGBO(54, 89, 106, 1),
-                          ),
-                        ),
-                        SizedBox(height: 5,),
+                        // Text(
+                        //   '${title}',
+                        //   style: TextStyle(
+                        //     fontSize: 21,
+                        //     color: Color.fromRGBO(54, 89, 106, 1),
+                        //   ),
+                        // ),
+                        // SizedBox(height: 5,),
                         ElevatedButton(
                           onPressed: () {
                             // Navigator.pushReplacementNamed(context, '/details_products_screen');

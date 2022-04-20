@@ -218,8 +218,10 @@ class _MenuScreenState extends State<MenuScreen> {
                   {
                    return   InCenterMenueScreen(
                      imageUrl: '${_offersProducts[itemIndex].imageUrl}',
+                     // _offersProducts[itemIndex].discountRatio.toString()
                       discount: _offersProducts[itemIndex].discountRatio.toString(), 
-                      title: _offersProducts[itemIndex].infoEn.toString(),
+                      //  _offersProducts[itemIndex].infoEn.toString()
+                      title:_offersProducts[itemIndex].infoEn.toString(),
                       );
 
                       
@@ -227,7 +229,7 @@ class _MenuScreenState extends State<MenuScreen> {
                      
                     options: CarouselOptions(
                       
-              height: 230,
+              height: 180,
               aspectRatio: 16/10,
               viewportFraction: 0.8,
               initialPage: 0,
@@ -328,7 +330,6 @@ class _MenuScreenState extends State<MenuScreen> {
                 size: 50.0,
               ),
                     );
-
                   }else if(snapshot.hasData&&snapshot.data!.isNotEmpty){
                     _category = snapshot.data ??[];
                     return GridView.builder(

@@ -225,10 +225,8 @@ class _SignInState extends State<SignIn> with Helpers {
     );
     if (customer) {
       Navigator.pushReplacementNamed(context, '/main_screen');
-      print('success');
+      showSnackBar(context: context, message: 'Login successfully', error: false);
     } else {
-      print('No success');
-
       showSnackBar(context: context, message: 'Login failed', error: true);
     }
   }
