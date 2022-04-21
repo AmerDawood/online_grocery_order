@@ -9,6 +9,7 @@ import 'package:grocery_order/screens/auth/page_view_screen.dart';
 import 'package:grocery_order/screens/auth/login_screen.dart';
 import 'package:grocery_order/screens/auth/register_screen.dart';
 import 'package:grocery_order/screens/other_screen/categories_screen.dart';
+import 'package:grocery_order/screens/other_screen/content_request_screen.dart';
 import 'package:grocery_order/screens/other_screen/favorite_screen.dart';
 import 'package:grocery_order/screens/launch_screen.dart';
 import 'package:grocery_order/screens/app/main_screen.dart';
@@ -56,7 +57,7 @@ class MainMaterialApp extends StatelessWidget {
           // darkTheme: ThemeService().darkTheme,
           // themeMode: ThemeService().getThemeMode(),
            initialRoute: '/launch_screen',
-      routes: {
+      routes:{
         //auth
         '/launch_screen':(context)=>LaunchScreen(),
         '/page_view_screen':(context)=>PageViewScreen(),
@@ -73,8 +74,7 @@ class MainMaterialApp extends StatelessWidget {
         '/notification_screen':(context)=>NotificationScreen(),
         '/terms_of_services':(context)=>TermsOfServices(),
         '/CategoriesScreen':(context)=>CategoriesScreen(),
-
-
+        '/ContentRequestScreen':(context)=>ContentRequestScreen(),
       },
 
         ),

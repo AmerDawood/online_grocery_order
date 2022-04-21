@@ -48,7 +48,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         iconTheme: IconThemeData(color: Colors.black),
       ),
 
-
       body: Column(children: [],)
       
     );

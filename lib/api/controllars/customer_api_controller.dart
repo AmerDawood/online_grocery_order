@@ -35,7 +35,7 @@ class CustomerApiController with Helpers{
 
   Future<bool>login({required String mobile,required String password})async{
   var url =Uri.parse(ApiSettings.LOGIN);
-  var response = await http.post(url,body: {
+  var response = await http.post(url,body:{
     'mobile':mobile,
     'password':password,
 

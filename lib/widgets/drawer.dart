@@ -39,7 +39,7 @@ class MyDrawer extends StatelessWidget {
                       ),
                     ),
                   ),
-                  title: Text(
+                  title:Text(
                     'Profile',
                     style: TextStyle(
                       fontSize: 23,
@@ -117,7 +117,7 @@ class MyDrawer extends StatelessWidget {
                   onTap: () {},
                   leading: InkWell(
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, '/');
+                        Navigator.pushReplacementNamed(context, '/ContentRequestScreen');
                       },
                       child: Image(
                         image:

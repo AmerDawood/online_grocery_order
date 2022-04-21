@@ -13,9 +13,9 @@ class _LaunchScreenState extends State<LaunchScreen> {
     // TODO: implement initState
     super.initState();
      Future.delayed(Duration(seconds: 4),(){
-       // String routeName =CustomerPreferenceController().loggedIn ?'/main_screen':'/sign_in';
-       // Navigator.pushReplacementNamed(context, routeName);
-       Navigator.pushReplacementNamed(context, '/page_view_screen');
+       String routeName =CustomerPreferenceController().loggedIn ?'/main_screen':'/sign_in';
+       Navigator.pushReplacementNamed(context, routeName);
+      //  Navigator.pushReplacementNamed(context, '/page_view_screen');
      },);
   }
 
