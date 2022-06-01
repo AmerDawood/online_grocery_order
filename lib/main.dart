@@ -8,6 +8,7 @@ import 'package:grocery_order/screens/auth/forget_password.dart';
 import 'package:grocery_order/screens/auth/page_view_screen.dart';
 import 'package:grocery_order/screens/auth/login_screen.dart';
 import 'package:grocery_order/screens/auth/register_screen.dart';
+import 'package:grocery_order/screens/other_screen/about_us.dart';
 import 'package:grocery_order/screens/other_screen/categories_screen.dart';
 import 'package:grocery_order/screens/other_screen/content_request_screen.dart';
 import 'package:grocery_order/screens/other_screen/favorite_screen.dart';
@@ -15,6 +16,7 @@ import 'package:grocery_order/screens/launch_screen.dart';
 import 'package:grocery_order/screens/app/main_screen.dart';
 import 'package:grocery_order/screens/app/menu_screen.dart';
 import 'package:grocery_order/screens/other_screen/notification_screen.dart';
+import 'package:grocery_order/screens/other_screen/settings_screen.dart';
 import 'package:grocery_order/screens/page_view_screen.dart';
 import 'package:grocery_order/screens/profile/personal_information.dart';
 import 'package:grocery_order/screens/profile/profile_screen.dart';
@@ -50,12 +52,7 @@ class MainMaterialApp extends StatelessWidget {
             ? Size(375, 812)
             : Size(812, 375),
         builder: () => GetMaterialApp(
-          // initialBinding: Binding(),
-          // home: AppScreen(),
           debugShowCheckedModeBanner: false,
-          // theme: ThemeService().lightTheme,
-          // darkTheme: ThemeService().darkTheme,
-          // themeMode: ThemeService().getThemeMode(),
            initialRoute: '/launch_screen',
       routes:{
         //auth
@@ -75,8 +72,11 @@ class MainMaterialApp extends StatelessWidget {
         '/terms_of_services':(context)=>TermsOfServices(),
         '/CategoriesScreen':(context)=>CategoriesScreen(),
         '/ContentRequestScreen':(context)=>ContentRequestScreen(),
-      },
+        '/settings_screen':(context)=>SettingsScreen(),
+        '/about_us':(context)=>AboutUs(),
 
+
+      },
         ),
       ),
     );

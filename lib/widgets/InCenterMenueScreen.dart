@@ -24,7 +24,7 @@ class InCenterMenueScreen extends StatelessWidget {
                     ),
                     fit: BoxFit.cover,
                     width: double.infinity,
-                    height: 180,
+                    height: 150,
                   ),
                   Center(
                     child: Column(
@@ -48,17 +48,10 @@ class InCenterMenueScreen extends StatelessWidget {
                               fontSize: 21,
                               color: Color.fromARGB(255, 37, 10, 10),
                             ),
-                            maxLines: 2,
+                            maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        // Text(
-                        //   '${title}',
-                        //   style: TextStyle(
-                        //     fontSize: 21,
-                        //     color: Color.fromRGBO(54, 89, 106, 1),
-                        //   ),
-                        // ),
                         // SizedBox(height: 5,),
                         ElevatedButton(
                           onPressed: () {

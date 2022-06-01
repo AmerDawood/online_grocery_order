@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_order/screens/auth/widget/custom_text_field.dart';
 import 'package:grocery_order/utils/helpers.dart';
+import 'package:grocery_order/widgets/arrow_back_widget.dart';
+import 'package:grocery_order/widgets/button.dart';
 
 import '../../api/controllars/contactRequests_api_controllers.dart';
 
@@ -30,30 +32,31 @@ class _ContentRequestScreenState extends State<ContentRequestScreen> with Helper
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(244, 246, 249, 1),
       
       body: Padding(
-        padding: const EdgeInsets.only(
-          top: 60,
-          left: 10,
-          right: 10,
-          bottom: 10,
-        ),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
+            SizedBox(height: 30,),
             Row(
               children: [
-                Text(
-              'If you want to Content Request !!',
-              style: TextStyle(
-                fontSize:25,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+                ArrowBack(route: '/main_screen'),
               ],
             ),
+            SizedBox(height: 30,),
+
+            Text(
+            'If you want to Content Request !!',
+            style: TextStyle(
+            fontSize:25,
+            fontWeight: FontWeight.bold,
+            ),
+            ),
+            SizedBox(height: 10,),
             Text(
              'Lorem Ipsum is simply dummy text of the printing and typesetting industry.' 
-             'Lorem Ipsum has been the industr s standard dummy text ever since the 1500s,' ,
+             'Lorem Ipsum has been the industr' ,
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -66,6 +69,8 @@ class _ContentRequestScreenState extends State<ContentRequestScreen> with Helper
             padding: const EdgeInsets.only(
              top: 15,
              bottom: 10,
+             left: 3,
+             right: 3,
             ),
             child: CustomTextField(
               textEditingController: textEditingController, 
@@ -78,19 +83,19 @@ class _ContentRequestScreenState extends State<ContentRequestScreen> with Helper
             padding: const EdgeInsets.only(
              top: 15,
              bottom: 10,
+              left: 3,
+             right: 3,
             ),
             child: CustomTextField(
               textEditingController: subjectEditingController, 
               text:'Enter Subject'
               ),
           ),
-          Align(
-            alignment: AlignmentDirectional.topStart,
-            child: ElevatedButton(
-              onPressed: ()async =>  await performRequest(),
-            child: Text('Submit')
-            ),
-          ), 
+          SizedBox(height: 10,),
+             ButtonWidget(fun: (){
+               performRequest();
+
+             }, text: 'Sent Content Request'),
           ],
         ),
       ),
@@ -101,7 +106,7 @@ class _ContentRequestScreenState extends State<ContentRequestScreen> with Helper
 
  Future<void> performRequest() async {
     if (checkData()){
-      await login();
+      await Request();
     }
   }
 
@@ -111,15 +116,18 @@ class _ContentRequestScreenState extends State<ContentRequestScreen> with Helper
     }
     return false;
   }
-  Future<void> login() async {
+  Future<void> Request() async {
    bool request=  await ContactRequestsApiController().ContactRequest(
-    // subject: 'subjectEditingController.text',
-    //    message:'textEditingController.text',
+    subject: subjectEditingController.text,
+       message:textEditingController.text,
+       context: context,
    );
     if (request) {
-      showSnackBar(context: context, message: 'Add Content Request successfully', error: false);
-    } else {
       showSnackBar(context: context, message: 'Something Error', error: true);
+
+    } else {
+      showSnackBar(context: context, message: 'Add Content Request successfully', error: false);
+
     }
   }
 }

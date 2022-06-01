@@ -76,48 +76,59 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
             _categories = snapshot.data ?? [];
 
-            return GridView.builder(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 3 / 2,
-                    crossAxisSpacing: 5,
-                    mainAxisSpacing: 5),
-                itemCount: _categories.length,
-                itemBuilder: (BuildContext ctx, index) {
-                  return InkWell(
-                    onTap: () {
-                      Get.to(DetailScreen(_categories[index]));
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Stack(
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 40, bottom: 15),
-                                child: Text(
-                                  _categories[index].nameEn,
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ],
+            return Padding(
+              padding: const EdgeInsets.only(left: 15,top: 17,right: 15,bottom: 15),
+              child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      childAspectRatio: 2 / 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10),
+                  itemCount: _categories.length,
+                  itemBuilder: (BuildContext ctx, index) {
+                    return Container(
+                     alignment: Alignment.center,
+                     decoration: BoxDecoration(
+                     color: Colors.white,
+                       borderRadius: BorderRadius.circular(15)
+                     ),
+                    child:  Stack(
+                       children: [
+                         Stack(
+                           children: [
+                             Center(
+                               child: Image(
+                               image: NetworkImage(
+                                 _categories[index].imageUrl,
+                               ),
+                           ),
+                             ),
+                            Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                             children: [
+                               Text(
+                                 _categories[index].nameEn,
+                                 style: TextStyle(
+                                   fontSize: 22,
+                                   color: Colors.black,
+                                   fontWeight: FontWeight.bold,
+                                   letterSpacing: 3,
+                                 ),
+                               ),
+                             ],
+                         ),
                           ),
-                          Image(
-                            image: NetworkImage(
-                              _categories[index].imageUrl,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                });
+                           ],
+                         ),
+                         
+                       ],
+                     ),
+                    
+                      );
+                  }),
+            );
           } else {
             return Center(
               child: Column(

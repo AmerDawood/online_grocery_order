@@ -1,11 +1,16 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:grocery_order/api/controllars/customer_api_controller.dart';
+import 'package:grocery_order/screens/auth/login_screen.dart';
 import 'package:grocery_order/screens/auth/widget/custom_button.dart';
 import 'package:grocery_order/screens/auth/widget/custom_text.dart';
 import 'package:grocery_order/screens/auth/widget/custom_text_field.dart';
 import 'package:grocery_order/utils/helpers.dart';
+
+import '../../widgets/arrow_back_widget.dart';
+import '../../widgets/button.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -50,12 +55,9 @@ class _SignUpState extends State<SignUp> with Helpers {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(254, 250, 247, 1),
+      backgroundColor: Color.fromARGB(255, 237, 232, 228),
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
+     
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 26),
         child: SingleChildScrollView(
@@ -65,7 +67,10 @@ class _SignUpState extends State<SignUp> with Helpers {
               SizedBox(
                 height: 15,
               ),
-             
+                    ArrowBack(route: '/sign_in'),
+  SizedBox(
+                height: 15,
+              ),
               SizedBox(
                 height: 30,
               ),
@@ -130,15 +135,10 @@ class _SignUpState extends State<SignUp> with Helpers {
                 height: 15,
               ),
               SizedBox(height: 10),
-              
-              // CustomTextField(
-              //   text: 'Gender',
-              //   textEditingController: _genderEditingController,
+              // TextField(
+              //   controller:_genderEditingController,
               // ),
-              TextField(
-                controller:_genderEditingController,
-              ),
-                SizedBox(height: 10),
+                // SizedBox(height: 10),
               
               CustomTextField(
                 text: 'City Id',
@@ -147,11 +147,14 @@ class _SignUpState extends State<SignUp> with Helpers {
              SizedBox(
                 height: 20,
               ),
-              CustomButton(
-                text: 'Get Started',
-                color: Color.fromRGBO(255, 130, 54, 1),
-                function: () async => await performRegister(),
+
+            ButtonWidget(
+              fun: (){
+                performRegister();
+              },
+              text: 'Register Now',
               ),
+
               SizedBox(
                 height: 10,
               ),

@@ -5,10 +5,10 @@ class OffersProducts {
  late  String infoEn;
  late  String infoAr;
  late  String image;
- late  int discountRatio;
- late  int originalPrice;
- late  double discountPrice;
- late  int productId;
+ dynamic discountRatio;
+dynamic originalPrice;
+dynamic discountPrice;
+ dynamic productId;
  late  String startDate;
  late  String endDate;
  late  bool expired;

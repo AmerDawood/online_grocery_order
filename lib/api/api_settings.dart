@@ -10,7 +10,7 @@ class ApiSettings{
   static const ForgetPassword =_API_URL +'auth/forget-password';
   static const ResetPassword =_API_URL +'auth/reset-password?={code}';
   static const Category =_API_URL +'categories';
-  static const Product =_API_URL +'categories';
+  static const Product =_API_URL +'products';
   static const OffersProducts =_API_URL+'offers';
   static const ContactRequest =_API_URL+'contact-requests';
 

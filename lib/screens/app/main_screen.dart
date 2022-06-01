@@ -37,9 +37,10 @@ class _MainScreenState extends State<MainScreen> {
         },
         currentIndex: _currentIndex,
         selectedItemColor: Colors.black,
-        backgroundColor: Colors.grey.shade200,
-        selectedFontSize: 17,
+        backgroundColor: Colors.white,
+        selectedFontSize: 15,
         selectedIconTheme: IconThemeData(color: Colors.black),
+        
 
         items: [
 BottomNavigationBarItem(

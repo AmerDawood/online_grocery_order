@@ -7,12 +7,12 @@ class Customer {
  late bool active;
  late bool verified;
  late int cityId;
- late int storeId;
+//  late int storeId;
  late Null fcmToken;
  late String token;
  late String tokenType;
  late String refreshToken;
- late City city;
+//  late City city;
 
  Customer.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -22,33 +22,33 @@ class Customer {
     gender = json['gender'];
     active = json['active'];
     verified = json['verified'];
-    cityId = json['city_id'];
-    storeId = json['store_id'];
+    // cityId = json['city_id'];
+    // storeId = json['store_id'];
     fcmToken = json['fcm_token'];
     token = json['token'];
     tokenType = json['token_type'];
     refreshToken = json['refresh_token'];
-    city = (json['city']=City.fromJson(json['city']));
+    // city = (json['city']=City.fromJson(json['city']));
   }
 
 
 }
 
-class City {
-  int id =1;
- late String nameEn;
- late String nameAr;
+// class City {
+//   int id =1;
+//  late String nameEn;
+//  late String nameAr;
 
 
 
-  City.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    nameEn = json['name_en'];
-    nameAr = json['name_ar'];
-  }
+//   City.fromJson(Map<String, dynamic> json) {
+//     id = json['id'];
+//     nameEn = json['name_en'];
+//     nameAr = json['name_ar'];
+//   }
 
 
-}
+// }
 
 
 
@@ -72,25 +72,7 @@ class Store {
   String? createdAt;
   String? updatedAt;
 
-  Store(
-      {this.id,
-      this.name,
-      this.storeName,
-      this.email,
-      this.emailVerifiedAt,
-      this.mobile,
-      this.storeUuid,
-      this.cityId,
-      this.verificationCode,
-      this.active,
-      this.verified,
-      this.firebaseKey,
-      this.image,
-      this.address,
-      this.facebook,
-      this.instagram,
-      this.createdAt,
-      this.updatedAt});
+  
 
   Store.fromJson(Map<String, dynamic> json) {
     id = json['id'];

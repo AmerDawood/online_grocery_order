@@ -15,6 +15,8 @@ import 'package:grocery_order/models/category.dart';
 import 'package:grocery_order/models/customer.dart';
 import 'package:grocery_order/models/offers_products.dart';
 import 'package:grocery_order/models/product.dart';
+import 'package:grocery_order/prefs/customer_preferance_controller.dart';
+import 'package:grocery_order/screens/auth/widget/custom_text.dart';
 import 'package:grocery_order/widgets/InCenterMenueScreen.dart';
 import 'package:grocery_order/widgets/Search&Filtter.dart';
 import 'package:grocery_order/widgets/StackInMenuScreen.dart';
@@ -56,73 +58,65 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromRGBO(244, 246, 249, 1),
       drawer: MyDrawer(),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: Text(
-          'Hi, ',
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            color: Color.fromRGBO(54, 89, 106, 1),
-            shadows: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: Offset(0, 3), // changes position of shadow
-              ),
-            ],
-          ),
-        ),
-        leading: Builder(
+
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        child: ListView(
+          children: [
+            Row(
+              children: [
+                  Container(
+                  width: 45,height: 45,
+                  child:
+           Builder(
           builder: (context) {
             return InkWell(
               onTap: () {
                 Scaffold.of(context).openDrawer();
               },
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, top: 5),
-                child: Image(
-                  image: (AssetImage(
-                    'image_drawer/img - user.png',
-                  )),
+              child: Image(
+                image: (AssetImage(
+                  'image_drawer/img - user.png',
+                )
                 ),
               ),
             );
           },
         ),
-        actions: [
-          CircleAvatar(
-            radius: 20,
-            backgroundColor: Colors.white,
-            child: InkWell(
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.only(right: 15),
+         ),
+                SizedBox(width: 15,),
+
+                CustomText(text: 'Hi, ${CustomerPreferenceController().name}', 
+                fontSize: 26, 
+                fontWeight: FontWeight.w500,
+                color: Color.fromRGBO(54, 89, 106, 1),
+                 ),
+                Spacer(),
+                Container(width: 45,height: 45,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                ),
                 child: Image(
                   image: AssetImage(
                     'image_drawer/Icon - supermarket.png',
                   ),
                 ),
-              ),
+                ),
+                SizedBox(width: 10,),
+
+              
+              ],
             ),
-          ),
-        ],
-      ),
-    
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        child: ListView(
-          children: [
+            SizedBox(height: 10,),
             SearchAndFiltter(),
             SizedBox(
               height: 7,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 10, top: 5, right: 10),
+              padding: const EdgeInsets.only(left: 0, top: 5, right: 10),
               child:
               
                FutureBuilder<List<Categories>>(
@@ -131,15 +125,12 @@ class _MenuScreenState extends State<MenuScreen> {
                   if (snapshot.connectionState == ConnectionState.waiting)
                   {
                     return const Center(
-                      child:  SpinKitRotatingCircle(
-                color: Colors.orange,
-                size: 50.0,
-              ),
+    
                     );
                   } else if (snapshot.hasData&&snapshot.data!.isNotEmpty) {
                       _category = snapshot.data ??[];
                     return SizedBox(
-                      height: 150,
+                      height: 160,
                       child: ListView.builder(
                         itemCount: _category.length,
                         scrollDirection: Axis.horizontal,
@@ -163,20 +154,6 @@ class _MenuScreenState extends State<MenuScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.warning,
-                            size: 80,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            'No Category',
-                            style: TextStyle(
-                              fontSize: 30,
-                              color: Colors.grey,
-                            ),
-                          ),
                         ],
                       ),
                     );
@@ -204,12 +181,9 @@ class _MenuScreenState extends State<MenuScreen> {
                 size: 50.0,
               ),
                     );
-                  } else if (snapshot.hasData&&snapshot.data!.isNotEmpty) {
+                  } else if (snapshot.hasData&&snapshot.data!.isNotEmpty){
                       _offersProducts = snapshot.data ??[];
                       return  
-
-
-
 
               CarouselSlider.builder(
                           
@@ -222,13 +196,13 @@ class _MenuScreenState extends State<MenuScreen> {
                       discount: _offersProducts[itemIndex].discountRatio.toString(), 
                       //  _offersProducts[itemIndex].infoEn.toString()
                       title:_offersProducts[itemIndex].infoEn.toString(),
+                      
                       );
 
                       
                   },
                      
                     options: CarouselOptions(
-                      
               height: 180,
               aspectRatio: 16/10,
               viewportFraction: 0.8,
@@ -236,8 +210,8 @@ class _MenuScreenState extends State<MenuScreen> {
               enableInfiniteScroll: true,
               reverse: false,
               autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(seconds: 3),
+              autoPlayInterval: Duration(seconds: 5),
+              autoPlayAnimationDuration: Duration(seconds: 5),
               autoPlayCurve: Curves.fastOutSlowIn,
               enlargeCenterPage: true,
               
@@ -279,7 +253,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
 
             SizedBox(
-              height: 15,
+              // height: 5,
             ),
             Row(
               children: [
@@ -301,9 +275,12 @@ class _MenuScreenState extends State<MenuScreen> {
                 ),
                 Spacer(),
                 ElevatedButton(
-                  onPressed: () => Navigator.pushNamed(context, '/top_product'),
+                  // onPressed: () => Navigator.pushNamed(context, '/top_product'),
+                  onPressed: (){
+                    ProductAPIController().getProduct();
+                  },
                   style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(169, 181, 199, 1),
+                    primary: Color.fromARGB(255, 217, 222, 229),
                   ),
                   child: Text(
                     'view all',
@@ -343,7 +320,7 @@ class _MenuScreenState extends State<MenuScreen> {
                       itemBuilder: (BuildContext ctx, index){
                         return InkWell(
                           onTap: (){
-                            Navigator.pushReplacementNamed(context, '/details_products_screen');
+                            // Navigator.pushReplacementNamed(context, '/details_products_screen');
                           },
                           child: menu_widget(
                             Text1: _category[index].nameEn,

@@ -18,7 +18,7 @@ class ProductAPIController{
 
     if(response.statusCode==200){
       var jsonResponse = jsonDecode(response.body);
-      //as List
+      print(jsonResponse['data']);
       var jsonArray = jsonResponse['list'] as List;
       return jsonArray.map((jsonObject) => Product.fromJson(jsonObject)).toList();
     }else if(response.statusCode==400){

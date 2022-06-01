@@ -10,24 +10,35 @@ class CustomTextField extends StatelessWidget {
 });
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: textEditingController,
-      keyboardType: TextInputType.phone,
-      decoration: InputDecoration(
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 1,
-            color: Colors.grey.shade500,
+    return Container(
+      decoration: BoxDecoration(
+      color: Colors.white,
+         borderRadius: BorderRadius.circular(20),
+      ),
+      child: TextField(
+        controller: textEditingController,
+        keyboardType: TextInputType.phone,
+        decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(
+              width: 1,
+              color: Colors.grey.shade100,
+            ),
           ),
-        ),
-        labelText: text,
-        labelStyle: TextStyle(
-          fontSize: 20,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 1,
-            color: Colors.grey.shade500,
+          hintText: text,
+          hintStyle: TextStyle(
+            fontSize: 19,
+          ),
+          labelStyle: TextStyle(
+            fontSize: 20,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(
+              width: 1,
+              color: Colors.grey.shade100,
+            ),
           ),
         ),
       ),

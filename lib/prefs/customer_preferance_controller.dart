@@ -27,8 +27,15 @@ class CustomerPreferenceController {
     _sharedPreferences.setBool('isActive', customer.active);
   }
 
+  String get name => _sharedPreferences.getString('Name')??'';
+  String get mobile => _sharedPreferences.getString('mobile')??'';
+
+
   String get token => _sharedPreferences.getString('token') ?? '';
 
   bool get loggedIn => _sharedPreferences.getBool('logged_in') ?? false;
+      Future<bool> loggedOut()async{
+     return await _sharedPreferences.clear();
+   }
 
 }

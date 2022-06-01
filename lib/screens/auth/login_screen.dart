@@ -9,6 +9,9 @@ import 'package:grocery_order/screens/auth/widget/custom_text.dart';
 import 'package:grocery_order/screens/auth/widget/custom_text_field.dart';
 import 'package:grocery_order/utils/helpers.dart';
 
+import '../../widgets/arrow_back_widget.dart';
+import '../../widgets/button.dart';
+
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
@@ -39,22 +42,26 @@ class _SignInState extends State<SignIn> with Helpers {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(254, 250, 247, 1),
+      backgroundColor: Color.fromARGB(255, 237, 232, 228),
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   backgroundColor: Colors.transparent,
+      // ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 26),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 50,
+               SizedBox(
+                height: 15,
               ),
-
+             ArrowBack(route: '/page_view_screen'),
+            
+             SizedBox(
+                height: 20,
+              ),
               SizedBox(
                 height: 15,
               ),
@@ -72,7 +79,7 @@ class _SignInState extends State<SignIn> with Helpers {
                       Navigator.pushReplacementNamed(context, '/sign_up');
                     },
                     text: 'Sign Up',
-                    color: Colors.black,
+                     color: Color.fromRGBO(255, 130, 54, 1),
                   ),
                 ],
               ),
@@ -100,7 +107,7 @@ class _SignInState extends State<SignIn> with Helpers {
                 text: 'Password',
                 textEditingController: passwordTextController,
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 6),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -121,23 +128,11 @@ class _SignInState extends State<SignIn> with Helpers {
                   ),
                 ],
               ),
-              ElevatedButton(
-                onPressed: () async => await performLogin(),
-                style: ElevatedButton.styleFrom(
-                  primary: Color.fromRGBO(255, 130, 54, 1),
-                  fixedSize: Size(400, 60),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  shadowColor: Colors.orange,
-                ),
-                child: Text(
-                  'Get Started',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                  ),
-                ),
+              ButtonWidget(
+              fun: (){
+                performLogin();
+              },
+              text: 'Get Started',
               ),
               SizedBox(
                 height: 20,
@@ -156,11 +151,14 @@ class _SignInState extends State<SignIn> with Helpers {
                   Expanded(
                     flex: 2,
                     child:
-                    CustomText(
-                      text: 'Login with social',
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: CustomText(
+                        text: 'Login with social',
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                      ),
                     ),
                   ),
                   Expanded(

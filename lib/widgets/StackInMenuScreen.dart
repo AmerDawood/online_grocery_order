@@ -14,11 +14,18 @@ class StackToCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Column(
+        Container(
+          width: 120,
+          height: 140,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child:  Column(
           children: [
             Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                // color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
@@ -37,15 +44,21 @@ class StackToCategory extends StatelessWidget {
                 ],
               ),
             ),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 22,
-                color: Color.fromRGBO(54, 89, 106, 1),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Color.fromRGBO(54, 89, 106, 1),
+                ),
               ),
             ),
           ],
         ),
+        ),
+       
       ],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_order/widgets/button.dart';
 import 'package:grocery_order/widgets/page_view_widgets.dart';
 
 class PageViewScreen extends StatefulWidget {
@@ -104,30 +105,12 @@ class _PageViewScreenState extends State<PageViewScreen> {
                         ),
 
 
-                        Container(
-                          width: 388,
-                          height: 60,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 10),
-                            child:ElevatedButton(
-                              onPressed: () =>
-                                  Navigator.pushReplacementNamed(context, '/sign_in'),
-                              style: ElevatedButton.styleFrom(
-                                primary: Color.fromRGBO(255, 130, 54, 1),
-                                fixedSize: Size(400, 60),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              child: Text(
-                                'Start Now',
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                 
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15,right: 15,),
+                          child: ButtonWidget(fun: (){
+                               Navigator.pushReplacementNamed(context, '/sign_in');
+                          }, text: 'Start Now'),
                         ),
                       ],
                     ),

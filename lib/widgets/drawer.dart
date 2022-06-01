@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:grocery_order/prefs/customer_preferance_controller.dart';
+import 'package:grocery_order/screens/auth/login_screen.dart';
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
     Key? key,
@@ -10,12 +12,7 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ImageFiltered(
-          imageFilter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
-          child: Image(
-            image: AssetImage('images/pATTERN.png'),
-          ),
-        ),
+     
         Container(
           width: 240,
           child: Drawer(
@@ -27,43 +24,128 @@ class MyDrawer extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                ListTile(
-                  leading: InkWell(
-                    onTap: () {
+                InkWell(
+                  onTap: () {
                       Navigator.pushReplacementNamed(
                           context, '/profile_screen');
                     },
-                    child: Image(
+                  child: ListTile(
+                    leading: Image(
                       image: AssetImage(
                         'image_drawer/Icon - Profile1.png',
                       ),
                     ),
-                  ),
-                  title:Text(
-                    'Profile',
-                    style: TextStyle(
-                      fontSize: 23,
-                      color: Color.fromRGBO(54, 89, 106, 1),
+                    title:Text(
+                      'Profile',
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: Color.fromRGBO(54, 89, 106, 1),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 7,
                 ),
-                ListTile(
-                  leading: InkWell(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, '/');
+                InkWell(
+                     onTap: () {
+                      Navigator.pushReplacementNamed(context, '/about_us');
                     },
-                    child: Image(
+                  child: ListTile(
+                    leading: Image(
                       image: AssetImage('image_drawer/Icon - about us.png'),
                     ),
+                    title: Text(
+                      'About us',
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: Color.fromRGBO(54, 89, 106, 1),
+                      ),
+                    ),
                   ),
-                  title: Text(
-                    'About us',
-                    style: TextStyle(
-                      fontSize: 23,
-                      color: Color.fromRGBO(54, 89, 106, 1),
+                ),
+                SizedBox(
+                  height: 7,
+                ),
+                InkWell(
+                  onTap: (){ 
+                      Navigator.pushReplacementNamed(context, '/about_us');
+                  },
+                  child: ListTile(
+                    leading: Image(
+                      image: AssetImage('image_drawer/Icon - Articles.png'),
+                    ),
+                    title: Text(
+                      'Articles',
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: Color.fromRGBO(54, 89, 106, 1),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 7,
+                ),
+                InkWell(
+                     onTap: () {
+                      Navigator.pushReplacementNamed(context, '/settings_screen');
+                    },
+                  child: ListTile(
+                    leading: InkWell(
+                      child: Image(
+                        image: AssetImage('image_drawer/settings.png'),
+                      ),
+                    ),
+                    title: Text(
+                      'Settings',
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: Color.fromRGBO(54, 89, 106, 1),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 7,
+                ),
+                InkWell(
+                     onTap: () {
+                      Navigator.pushReplacementNamed(context, '/ContentRequestScreen');
+                    },
+                  child: ListTile(
+                               
+                    leading: Image(
+                      image:
+                      AssetImage('image_drawer/Icon - Need help.png'),
+                    ),
+                    title: Text(
+                      'Need Help?',
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: Color.fromRGBO(54, 89, 106, 1),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 7,
+                ),
+                InkWell(
+                     onTap: () {
+                      Navigator.pushReplacementNamed(context, '/terms_of_services');
+                    },
+                  child: ListTile(
+                    leading: Image(
+                      image: AssetImage(
+                          'image_drawer/Icon - Term of services.png'),
+                    ),
+                    title: Text(
+                      'Terms of Services',
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: Color.fromRGBO(54, 89, 106, 1),
+                      ),
                     ),
                   ),
                 ),
@@ -72,99 +154,11 @@ class MyDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   onTap: () {
-                    // Navigator.pushNamed(context, '/login_screen');
+                      logout(context);
                   },
-                  leading: InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, '/');
-                      },
-                      child: Image(
-                        image: AssetImage('image_drawer/Icon - Articles.png'),
-                      )),
-                  title: Text(
-                    'Articles',
-                    style: TextStyle(
-                      fontSize: 23,
-                      color: Color.fromRGBO(54, 89, 106, 1),
-                    ),
+                  leading: Image(
+                    image: AssetImage('image_drawer/Logout.png'),
                   ),
-                ),
-                SizedBox(
-                  height: 7,
-                ),
-                ListTile(
-                  onTap: () {},
-                  leading: InkWell(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, '/');
-                    },
-                    child: Image(
-                      image: AssetImage('image_drawer/settings.png'),
-                    ),
-                  ),
-                  title: Text(
-                    'Settings',
-                    style: TextStyle(
-                      fontSize: 23,
-                      color: Color.fromRGBO(54, 89, 106, 1),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 7,
-                ),
-                ListTile(
-                  onTap: () {},
-                  leading: InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, '/ContentRequestScreen');
-                      },
-                      child: Image(
-                        image:
-                        AssetImage('image_drawer/Icon - Need help.png'),
-                      )),
-                  title: Text(
-                    'Need Help?',
-                    style: TextStyle(
-                      fontSize: 23,
-                      color: Color.fromRGBO(54, 89, 106, 1),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 7,
-                ),
-                ListTile(
-                  onTap: () {},
-                  leading: InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(
-                            context, '/terms_of_services');
-                      },
-                      child: Image(
-                        image: AssetImage(
-                            'image_drawer/Icon - Term of services.png'),
-                      )),
-                  title: Text(
-                    'Terms of Services',
-                    style: TextStyle(
-                      fontSize: 23,
-                      color: Color.fromRGBO(54, 89, 106, 1),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 7,
-                ),
-                ListTile(
-                  onTap: () {},
-                  leading: InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(context, '/sign_in');
-                      },
-                      child: Image(
-                        image: AssetImage('image_drawer/Logout.png'),
-                      )),
                   title: Text(
                     'Sign Out',
                     style: TextStyle(
@@ -201,14 +195,14 @@ class MyDrawer extends StatelessWidget {
                       backgroundColor: Colors.white,
                     ),
                     title: Text(
-                      'Amer Dawood',
+                      CustomerPreferenceController().name,
                       style: TextStyle(
                         fontSize: 25,
                         color: Color.fromRGBO(54, 89, 106, 1),
                       ),
                     ),
                     subtitle: Text(
-                      'amermadawood@gmail.com',
+                      CustomerPreferenceController().mobile,
                       style: TextStyle(
                         fontSize: 15,
                         color: Color.fromRGBO(54, 89, 106, 1),
@@ -222,5 +216,18 @@ class MyDrawer extends StatelessWidget {
         ),
       ],
     );
+  }
+    Future<void> logout(BuildContext context) async {
+    bool status = await CustomerPreferenceController().loggedOut();
+    if (status) {
+      Navigator.pushNamed(context, '/sign_in');
+      // showSnackBar(
+      //     context: context, message: 'LOGOUT SUCCESSFULY', error: false);
+    } else{
+      // showSnackBar(
+      //     context: context,
+      //     message: 'SOMETHING ERROR IN LOGOUT ,TRY AGAIN',
+      //     error: true);
+    }
   }
 }

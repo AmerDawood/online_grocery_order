@@ -6,6 +6,8 @@ import 'package:grocery_order/screens/auth/widget/custom_button.dart';
 import 'package:grocery_order/screens/auth/widget/custom_text.dart';
 import 'package:grocery_order/screens/auth/widget/custom_text_field.dart';
 import 'package:grocery_order/utils/helpers.dart';
+import 'package:grocery_order/widgets/arrow_back_widget.dart';
+import 'package:grocery_order/widgets/button.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({Key? key}) : super(key: key);
@@ -33,30 +35,19 @@ class _ForgetPasswordState extends State<ForgetPassword> with Helpers {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Color.fromRGBO(254, 250, 247, 1),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-
-        leading: IconButton(
-          onPressed: (){
-            Navigator.pushReplacementNamed(context, '/sign_in');
-          },
-          icon: Icon(
-              Icons.arrow_back,
-            color: Colors.black,
-            size: 30,
-          ),
-        )
-      ),
+      backgroundColor: Color.fromARGB(255, 237, 232, 228),
+      
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 26),
         child: SingleChildScrollView(
           child: Column(
+            
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50,),
+              SizedBox(height: 15,),
+              ArrowBack(route: '/sign_in'),
               SizedBox(height: 25,),
+
               Text(
                 'Forgot password',
                 style: TextStyle(
@@ -92,7 +83,6 @@ class _ForgetPasswordState extends State<ForgetPassword> with Helpers {
                   ),
                 ],
               ),
-              SizedBox(height: 15,),
 
               CustomTextField(
                 textEditingController: _mobileEditingController,
@@ -102,26 +92,9 @@ class _ForgetPasswordState extends State<ForgetPassword> with Helpers {
                 height: 15,
               ),
               SizedBox(height: 20),
-              // ElevatedButton(
-              //   onPressed: () async => await performLogin(),
-              //   style: ElevatedButton.styleFrom(
-              //     primary: Color.fromRGBO(255, 130, 54, 1),
-              //     fixedSize: Size(400, 60),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //     ),
-              //   ),
-              //   child: Text(
-              //     'Reset Password',
-              //     style: TextStyle(
-              //       fontSize: 24,
-              //       color: Colors.white,
-              //     ),
-              //   ),
-              // ),
-              CustomButton(text: 'Reset Password', color: Color.fromRGBO(255, 130, 54, 1),
-                  function: ()async =>await performLogin(),),
-
+              ButtonWidget(fun: (){
+                performReset();
+              }, text: 'Restart Password'),
             ],
           ),
         ),
@@ -131,7 +104,7 @@ class _ForgetPasswordState extends State<ForgetPassword> with Helpers {
 
 
 
-  Future<void> performLogin() async {
+  Future<void> performReset() async {
     if (checkData()) {
       await login();
     }

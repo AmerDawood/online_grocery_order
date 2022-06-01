@@ -3,6 +3,7 @@ import 'package:grocery_order/api/controllars/customer_api_controller.dart';
 import 'package:grocery_order/screens/auth/widget/custom_text_field.dart';
 import 'package:grocery_order/utils/helpers.dart';
 import 'package:grocery_order/widgets/CodeTextField.dart';
+import 'package:grocery_order/widgets/arrow_back_widget.dart';
 class ResetPassword extends StatefulWidget {
   final String mobile;
   const ResetPassword({Key? key , required this.mobile}) : super(key: key);
@@ -76,28 +77,18 @@ class _ResetPasswordState extends State<ResetPassword> with Helpers {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Color.fromRGBO(254, 250, 247, 1),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: (){
-            Navigator.pushReplacementNamed(context, 'forget_password');
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-            size: 30,
-          ),
-        ),
-      ),
+      backgroundColor: Color.fromARGB(255, 237, 232, 228),
+
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 26),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 60,),
+              SizedBox(height: 15,),
+              ArrowBack(route: '/sign_in'),
+              SizedBox(height: 25,),
+
               Text(
                 'Reset password',
                 style: TextStyle(

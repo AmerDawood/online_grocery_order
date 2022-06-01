@@ -5,8 +5,8 @@ class Categories extends GetxController {
  late String nameEn;
  late String nameAr;
  late String image;
- late int productsCount;
- late int subCategoriesCount;
+ dynamic productsCount;
+ dynamic subCategoriesCount;
  late String imageUrl;
 
 
