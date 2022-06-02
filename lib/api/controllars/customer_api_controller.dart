@@ -159,36 +159,37 @@ class CustomerApiController with Helpers{
 
   }
   
+  Future<bool> activate({
+    required String mobile,
+    required String code,
+    required BuildContext context,
+  }) async {
+    var url = Uri.parse(ApiSettings.activate);
+    var response = await http.post(url, body: {
+      'mobile': mobile,
+      'code': code,
+    },headers: {
+      'lang':'en'
+    }
+    );
+  if(response.statusCode==200){
+      var jsonObject =jsonDecode(response.body);
+      showSnackBar(context: context, message:jsonObject['message']);
+      return true;
 
-  //function user active
-  // Future<bool> userActive({required BuildContext context ,required String mobile,required String code}) async {
-  //   var url = Uri.parse(ApiSettings.UserActive);
-  //   var response = await http.post(url,body:{
-  //     'mobile': mobile,
-  //     'code': code,
+    }else if(response.statusCode==400){
+      var jsonObject =jsonDecode(response.body);
+      showSnackBar(context: context,
+          message:jsonObject['message'],error: true);
+    }else{
+      showSnackBar(
+          context: context,
 
-  //   });
-  //   if(response.statusCode==200){
-  //     var jsonObject =jsonDecode(response.body);
-  //     showSnackBar(context: context, message:jsonObject['message']);
-  //     return true;
-
-  //   }else if(response.statusCode==400){
-  //     var jsonObject =jsonDecode(response.body);
-  //     showSnackBar(context: context,
-  //         message:jsonObject['message'],error: true);
-  //   }else{
-  //     showSnackBar(
-  //         context: context,
-
-  //         message: 'something error , try again',
-  //         error: true
-  //     );
-  //   }
-  //   return false;
-
-  // }
-
-
+          message: 'something error , try again',
+          error: true
+      );
+    }
+    return false;
+  }
 
 }

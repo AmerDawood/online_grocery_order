@@ -8,6 +8,7 @@ import 'package:grocery_order/screens/auth/forget_password.dart';
 import 'package:grocery_order/screens/auth/page_view_screen.dart';
 import 'package:grocery_order/screens/auth/login_screen.dart';
 import 'package:grocery_order/screens/auth/register_screen.dart';
+import 'package:grocery_order/screens/auth/verify_account.dart';
 import 'package:grocery_order/screens/other_screen/about_us.dart';
 import 'package:grocery_order/screens/other_screen/categories_screen.dart';
 import 'package:grocery_order/screens/other_screen/content_request_screen.dart';
@@ -74,6 +75,8 @@ class MainMaterialApp extends StatelessWidget {
         '/ContentRequestScreen':(context)=>ContentRequestScreen(),
         '/settings_screen':(context)=>SettingsScreen(),
         '/about_us':(context)=>AboutUs(),
+        '/active_account':(context)=>ActiveAccount(),
+
 
 
       },

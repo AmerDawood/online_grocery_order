@@ -421,7 +421,7 @@ class _SignUpState extends State<SignUp> with Helpers {
     _changeProgressValue(value: status ? 1 : 0);
     if (status) {
       // CustomerInformationGetXController.to.setPhoneNumber(_mobileTextController.text);
-      Navigator.pushReplacementNamed(context, '/sign_in');
+      Navigator.pushReplacementNamed(context, '/active_account');
     }
   }
 }
