@@ -51,17 +51,15 @@ class CustomerApiController with Helpers{
   return false;
 
   }
-     
 
-   // Register
   Future<bool> register({
-    required BuildContext context,
     required String name,
     required String mobile,
     required String password,
     required String gender,
-    required String city,
-    required String StorApiKey
+    required String STORE_API_KEY,
+    required String cityId,
+    required BuildContext context,
   }) async {
     var url = Uri.parse(ApiSettings.REGISTER);
     var response = await http.post(url, body: {
@@ -69,14 +67,18 @@ class CustomerApiController with Helpers{
       'mobile': mobile,
       'password': password,
       'gender': gender,
-      'city':city,
-      //'17956537-62bb-45ba-aaf0-f12705b144c8'
-      StorApiKey:StorApiKey,
+      'STORE_API_KEY': STORE_API_KEY,
+      'city_id': cityId,
     });
+
     if (response.statusCode == 201) {
       showSnackBar(
-        context: context,
-        message: jsonDecode(response.body)['message'],);
+          context: context, message: jsonDecode(response.body)['message']);
+      showSnackBar(
+          context: context,
+          message: jsonDecode(response.body)['code'].toString(),
+         );
+
       return true;
     } else if (response.statusCode == 400) {
       showSnackBar(
@@ -86,13 +88,11 @@ class CustomerApiController with Helpers{
     } else {
       showSnackBar(
           context: context,
-          message: 'something error , try again',
-          error: true
-      );
+          message: 'Something went wrong, please try again',
+          error: true);
     }
     return false;
   }
-
 
 
 

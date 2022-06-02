@@ -13,5 +13,6 @@ class ApiSettings{
   static const Product =_API_URL +'products';
   static const OffersProducts =_API_URL+'offers';
   static const ContactRequest =_API_URL+'contact-requests';
+    static const CITIES_URL = _API_URL + 'cities';
 
 }
